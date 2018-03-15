@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <br><br>
+    <h4 class="header light center" id="titre">Fiche Etudiant</h4>
+    <div id="etudiant" class="center container">
+        <br>
+        <table class="striped">
+            <tbody>
+            <tr>
+                <th class="center">Numéros INE</th>
+                <td class="center">{{ etudiant.iNE }}</td>
+            </tr>
+            <tr>
+                <th class="center">Nom</th>
+                <td class="center">{{ user.nom }}</td>
+            </tr>
+            <tr>
+                <th class="center">Prénom</th>
+                <td class="center">{{ user.prenom }}</td>
+            </tr>
+            <tr>
+                <th class="center">Genre</th>
+                <td class="center">{{ user.genre }}</td>
+            </tr>
+            <tr>
+                <th class="center">Email université</th>
+                <td class="center">{{ etudiant.mailaltern }}</td>
+            </tr>
+            <tr>
+                <th class="center">Diplome en cours</th>
+                <td class="center">{{ etudiant.diplomeEnCours }}</td>
+            </tr>
+            <tr>
+                <th class="center">Departement</th>
+                <td class="center">{{ etudiant.departement }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <br><br><br>
+        <div class=" waves-effect waves-light btn light">
+            <a class="white-text" href="{{ path('annuaire_recherche') }}">Nouvelle recherche</a>
+        </div>
+        <br>
+        <ul>
+            <li>
+                <a href="{{ path('menu') }}">Retour</a>
+            </li>
+        </ul>
+    </div>
+    <br>
+{% endblock %}

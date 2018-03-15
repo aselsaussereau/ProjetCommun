@@ -1,0 +1,60 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <br><br>
+    <h4 class="light center">Découvrez nos repas !</h4>
+    <br>
+    <div class="section no-pad-bot container">
+        <div class='card horizontal'>
+            <div class='card-image'>
+                <img class='image' alt='Image' src='{{ asset('r1.jpg') }}'>
+                <span class='card-title'>Titre du repas</span>
+            </div>
+            <div class='card-stacked'>
+                <div class='card-content'>
+                    <img src="{{ asset('p1.png') }}" alt="imageProfil" class="circle"
+                         style="border:1px rgb(225, 225, 225) solid;  max-width:65px;">
+                    <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
+                    <br>
+                    <p class='corps'>Description du repas</p>
+                    <p class='corps'><i class="tiny material-icons">timer</i>12:33:19</p>
+                </div>
+                <div class='card-action center'>
+                    <a href='#'>Prix €</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="section no-pad-bot container">
+        <div class='card horizontal'>
+            <div class='card-image'>
+                <img class='image' alt='Image' src='{{ asset('r2.jpg') }}'>
+                <span class='card-title'>Titre du repas</span>
+            </div>
+            <div class='card-stacked'>
+                <div class='card-content'>
+                    <img src="{{ asset('p1.png') }}" alt="imageProfil" class="circle"
+                         style="border:1px rgb(225, 225, 225) solid;  max-width:65px;">
+                    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                    <br>
+                    <p class='corps'>Description du repas</p>
+                    <p class='corps'><i class="tiny material-icons">timer</i>12:33:19</p>
+                </div>
+                <div class='card-action center'>
+                    <a href='#'>Prix €</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+    {% block javascripts %}
+        {{ parent() }}
+        <script>
+            $(document).ready(function () {
+                $('.carousel.carousel-slider').carousel({fullWidth: true});
+                $('.dropdown-button').dropdown();
+            });
+        </script>
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="utilisateur" class="center container">
+        <br><br>
+        <h4 class="light">Données utilisateur</h4>
+        <br><br>
+        <table class="striped">
+            <tbody>
+            <tr>
+                <th class="center">Nom</th>
+                <td class="center">{{ app.user.nom }}</td>
+            </tr>
+            <tr>
+                <th class="center">Prénom</th>
+                <td class="center">{{ app.user.prenom }}</td>
+            </tr>
+            <tr>
+                <th class="center">Date de naissance</th>
+                <td class="center">{{ app.user.dnaiss |date('d-m-Y') }}</td>
+            </tr>
+            <tr>
+                <th class="center">Username</th>
+                <td class="center">{{ app.user.username }}</td>
+            </tr>
+            <tr>
+                <th class="center">Email</th>
+                <td class="center">{{ app.user.email }}</td>
+            </tr>
+            <tr>
+                <th class="center">Genre</th>
+                {% if app.user.genre == 1 %}
+                    <td class="center">Homme</td>
+                {% else %}
+                    <td class="center">Homme</td>
+                {% endif %}
+            </tr>
+            </tbody>
+        </table>
+        <br><br>
+        <div>
+            <div class=" waves-effect waves-light btn light">
+                <a class="white-text" href="{{ path('fos_user_profile_edit') }}">Modifier profil</a>
+            </div>
+            <br><br>
+            <a href="{{ path('fos_user_change_password') }}">Changer mot de passe</a>
+        </div>
+        <br><br>
+    </div>
+{% endblock %}

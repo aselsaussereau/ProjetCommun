@@ -1,0 +1,149 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+    <div style="height: 675px;" class="parallax-container">
+        <div class="parallax "><img src="{{ asset('background.jpg') }}" alt="Unsplashed background img 2"
+                                    style="filter: blur(4px);"></div>
+        <br><br><br><br><br><br><br>
+        <div class="section">
+            <div class="row">
+                <div class="container center">
+                    <h1 class="header center teal-text">Manger Mieux !</h1>
+                    <br>
+                    <div class="row center">
+                        <h5 class="header light white-text container">Trouve ou propose aux étudiants de ton
+                            université des repas
+                            sains
+                            et équilibrés à un coût abordable !</h5>
+                    </div>
+                    <br>
+                    <div class="row center">
+                        <a href="{{ path('menu') }}" id="download-button"
+                           class="btn-large waves-effect waves-light teal lighten-1">Consulter nos plats</a>
+                    </div>
+                    <br><br>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="section grey lighten-2">
+        <br><br>
+        <h4 class="center">Les bon plats du moment !</h4>
+        <br><br><br><br>
+        <div class="container ">
+            <div class="carousel carousel-slider center" data-indicators="true">
+
+                <div class="carousel-item blue white-text" href="#one!">
+                    <h2>Repas 1</h2>
+
+                    <p class="white-text container">Description du repas : We hope you have enjoyed using Materialize
+                        and if
+                        you feel like it has helped you out and want to support the team you can help us by donating or
+                        backing us on Patreon.
+                        Any amount would help support and continue development on this project and is greatly
+                        appreciated.</p>
+                    <p class='corps'><i class="tiny material-icons ">timer</i>12:33:19</p>
+                    <a class="btn waves-effect white grey-text darken-text-2">Prix</a>
+
+                </div>
+                <div class="carousel-item amber white-text" href="#two!">
+
+
+                    <h2>Repas 2</h2>
+
+                    <p class="white-text container">Description du repas : We hope you have enjoyed using Materialize
+                        and if
+                        you feel like it has helped you out and want to support the team you can help us by donating or
+                        backing us on Patreon.
+                        Any amount would help support and continue development on this project and is greatly
+                        appreciated.</p>
+                    <p class='corps'><i class="tiny material-icons ">timer</i>12:33:19</p>
+                    <a class="btn waves-effect white grey-text darken-text-2">Prix</a>
+
+
+                </div>
+                <div class="carousel-item green white-text" href="#three!">
+                    <h2>Repas 3</h2>
+
+                    <p class="white-text container">Description du repas : We hope you have enjoyed using Materialize
+                        and if
+                        you feel like it has helped you out and want to support the team you can help us by donating or
+                        backing us on Patreon.
+                        Any amount would help support and continue development on this project and is greatly
+                        appreciated.</p>
+                    <p class='corps'><i class="tiny material-icons ">timer</i>12:33:19</p>
+                    <a class="btn waves-effect white grey-text darken-text-2">Prix</a>
+                </div>
+                <div class="carousel-item blue white-text" href="#four!">
+                    <h2>Repas 4</h2>
+
+                    <p class="white-text container">Description du repas : We hope you have enjoyed using Materialize
+                        and if
+                        you feel like it has helped you out and want to support the team you can help us by donating or
+                        backing us on Patreon.
+                        Any amount would help support and continue development on this project and is greatly
+                        appreciated.</p>
+                    <p class='corps'><i class="tiny material-icons ">timer</i>12:33:19</p>
+                    <a class="btn waves-effect white grey-text darken-text-2">Prix</a>
+                </div>
+            </div>
+        </div>
+        <br><br><br><br>
+    </div>
+
+
+
+
+    <div id="tuto" class="container">
+        <br><br><br><br><br>
+
+        <h3 class="light center">Comment ça fonctionne ?</h3>
+        <br><br>
+        <div class="section">
+            <div class="row">
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center brown-text"><i class="material-icons medium">search</i></h2>
+                        <h5 class="center">Choisis ton plat!</h5>
+
+                        <p class="light center">De délicieux bons plans partagés entre étudiants de ton université !</p>
+                    </div>
+                </div>
+
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center brown-text"><i class="material-icons medium">directions_run</i></h2>
+                        <h5 class="center">Commande-le !</h5>
+
+                        <p class="light center">C'est rapide et simple, il n'y en aura pas pour tout le monde !</p>
+                    </div>
+                </div>
+
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center brown-text"><i class="material-icons medium">group</i></h2>
+                        <h5 class="center">Récupère-le !</h5>
+
+                        <p class="light center">Avec ton mot secret de commande, tu vas te régaler et faire des
+                            rencontres
+                            !</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br><br><br><br><br><br>
+    </div>
+    {% block javascripts %}
+        {{ parent() }}
+        <script>
+            $(document).ready(function () {
+                $('.carousel.carousel-slider').carousel({fullWidth: true});
+                $('.parallax').parallax();
+            });
+        </script>
+    {% endblock %}
+{% endblock %}

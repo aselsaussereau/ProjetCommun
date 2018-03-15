@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <title>{% block title %}Welcome{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+
+    {% block stylesheets %}
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="{{ asset('css/materialize.min.css') }}" media="screen,projection"/>
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    {% endblock %}
+
+</head>
+<body>
+
+{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a href="#">Mes Commandes</a></li>
+        <li><a href="{{ path('user_show', { 'id': app.user.id }) }}">Mon Profil</a></li>
+        <li class="divider"></li>
+        <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+    </ul>
+    <div class="navbar-fixed">
+        <nav style="opacity: 0.9">
+            <div class="nav-wrapper blue-grey lighten-1">
+                <a href="#" class="brand-logo white-text">Logo</a>
+                <ul class="right hide-on-med-and-down">
+                    <li>
+                        <a class="button white-text" href="{{ path('menu') }}">
+                            <i class="tiny material-icons left">menu</i>Publiez un repas
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-button white-text" data-activates="dropdown1">
+                            <i class="tiny material-icons left">account_circle</i>{{ app.user.username }}
+                            <i class="material-icons right">arrow_drop_down</i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+{% else %}
+    <div class="navbar-fixed">
+        <nav style="opacity: 0.9;">
+            <div class="nav-wrapper blue-grey lighten-1">
+                <a href="{{ path('accueil') }}" class="brand-logo white-text">Logo</a>
+                <ul class="right hide-on-med-and-down ">
+                    <li><a href="{{ path('fos_user_registration_register') }}" class="white-text">
+                            <i class="tiny material-icons left">account_circle</i>Inscription</a>
+                    </li>
+                    <li><a href="{{ path('fos_user_security_login') }}" class="white-text">
+                            <i class="tiny material-icons left">lock</i>Connexion</a>
+                    </li>
+                    <li><a class="white-text">
+                            <i class="tiny material-icons left">menu</i>Publiez un repas</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+{% endif %}
+
+
+
+{% block body %}
+{% endblock %}
+
+{% block footer %}
+    <footer class="page-footer teal center">
+        <div class="container">
+            Crée par l'équipe <a class="brown-text text-lighten-3" href="{{ path('accueil') }}">Manger Mieux</a>
+        </div>
+    </footer>
+{% endblock %}
+
+{% block javascripts %}
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.dropdown-button').dropdown({
+                    inDuration: 300,
+                    outDuration: 225,
+                    constrainWidth: false, // Does not change width of dropdown to that of the activator
+                    hover: true, // Activate on hover
+                    gutter: 0, // Spacing from edge
+                    belowOrigin: false, // Displays dropdown below the button
+                    alignment: 'left', // Displays dropdown with edge aligned to the left of button
+                    stopPropagation: false // Stops event propagation
+                }
+            );
+        });
+    </script>
+{% endblock %}
+
+</body>
+</html>
