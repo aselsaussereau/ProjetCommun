@@ -28,6 +28,11 @@ class DefaultController extends Controller
      */
     public function menuAction(Request $request)
     {
-        return $this->render('menu.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $plats = $em->getRepository('AppBundle:Plat')->findAll();
+
+        return $this->render('menu.html.twig', array(
+            'plats' => $plats,
+        ));
     }
 }

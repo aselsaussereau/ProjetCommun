@@ -4,49 +4,32 @@
     <br><br>
     <h4 class="light center">Découvrez nos repas !</h4>
     <br>
-    <div class="section no-pad-bot container">
-        <div class='card horizontal'>
-            <div class='card-image'>
-                <img class='image' alt='Image' src='{{ asset('r1.jpg') }}'>
-                <span class='card-title'>Titre du repas</span>
-            </div>
-            <div class='card-stacked'>
-                <div class='card-content'>
-                    <img src="{{ asset('p1.png') }}" alt="imageProfil" class="circle"
-                         style="border:1px rgb(225, 225, 225) solid;  max-width:65px;">
-                    <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
-                    <br>
-                    <p class='corps'>Description du repas</p>
-                    <p class='corps'><i class="tiny material-icons">timer</i>12:33:19</p>
+    {% for plat in plats %}
+        <div class="section no-pad-bot container">
+            <div class='card horizontal'>
+                <div class='card-image'>
+                    <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" height="300px" width="500px">
+                    <span class='card-title'>{{ plat.nomPlat }}</span>
                 </div>
-                <div class='card-action center'>
-                    <a href='#'>Commandé</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br><br>
-    <div class="section no-pad-bot container">
-        <div class='card horizontal'>
-            <div class='card-image'>
-                <img class='image' alt='Image' src='{{ asset('r2.jpg') }}'>
-                <span class='card-title'>Titre du repas</span>
-            </div>
-            <div class='card-stacked'>
-                <div class='card-content'>
-                    <img src="{{ asset('p1.png') }}" alt="imageProfil" class="circle"
-                         style="border:1px rgb(225, 225, 225) solid;  max-width:65px;">
-                    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                    <br>
-                    <p class='corps'>Description du repas</p>
-                    <p class='corps'><i class="tiny material-icons">timer</i>12:33:19</p>
-                </div>
-                <div class='card-action center'>
-                    <a href='#'>Commandé</a>
+                <div class='card-stacked'>
+                    <div class='card-content'>
+                        <img src="{{ asset('p1.png') }}" alt="imageProfil" class="circle"
+                             style="border:1px rgb(225, 225, 225) solid;  max-width:65px;">
+                        <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
+                        <br>
+                        <p class='corps'>{{ plat.descriptionPlat }}</p>
+                        <p class='corps'><i class="tiny material-icons">timer</i>
+                            {% if plat.dureeValide %}{{ plat.dureeValide|date('H:i:s') }}{% endif %}
+                        </p>
+                    </div>
+                    <div class='card-action center'>
+                        <a href='#'>Commander</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+        <br><br>
+    {% endfor %}
     <br><br><br>
     {% block javascripts %}
         {{ parent() }}
