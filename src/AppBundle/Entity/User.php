@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as FOSUser;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * User
@@ -40,6 +42,30 @@ class User extends FOSUser
      * @ORM\Column(type="integer")
      */
     protected $genre;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Ajouter une image jpg")
+     * @Assert\File(mimeTypes={ "image/jpeg" })
+     */
+    private $imageUser;
+
+    /**
+     * @return mixed
+     */
+    public function getImageUser()
+    {
+        return $this->imageUser;
+    }
+
+    /**
+     * @param mixed $imageUser
+     */
+    public function setImageUser($imageUser)
+    {
+        $this->imageUser = $imageUser;
+    }
 
 
     public function getNom()

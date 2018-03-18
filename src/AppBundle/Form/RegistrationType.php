@@ -10,6 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+
 
 class RegistrationType extends AbstractType
 {
@@ -17,24 +19,27 @@ class RegistrationType extends AbstractType
     {
         $builder->add('nom', TextType::class, array(
             'label' => 'Nom',
-        ));
-        $builder->add('prenom', TextType::class, array(
-            'label' => 'Prénom',
-        ));
-        $builder->add('dnaiss', BirthdayType::class, array(
-            'label' => 'Date de naissance (jj/mm/aaaa)',
-            'placeholder' => 'Sélectionner une valeur',
-            'widget' => 'single_text',
-            'format' => 'dd-MM-yyyy',
-        ));
-
-        $builder->add('genre', ChoiceType::class, array(
-            'choices' => array(
-                'Femme' => 0,
-                'Homme' => 1,
-            ),
-            'expanded' => true,
-        ));
+        ))
+            ->add('prenom', TextType::class, array(
+                'label' => 'Prénom',
+            ))
+            ->add('dnaiss', BirthdayType::class, array(
+                'label' => 'Date de naissance (jj/mm/aaaa)',
+                'placeholder' => 'Sélectionner une valeur',
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+            ))
+            ->add('genre', ChoiceType::class, array(
+                'choices' => array(
+                    'Femme' => 0,
+                    'Homme' => 1,
+                ),
+                'expanded' => true,
+            ))
+            ->add('imageUser', FileType::class, array(
+                'label' => 'Image(JPG)',
+                'data_class' => null,
+            ));
 
     }
 

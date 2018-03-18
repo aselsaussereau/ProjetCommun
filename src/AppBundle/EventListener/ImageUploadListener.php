@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use AppBundle\Entity\Plat;
+use AppBundle\Entity\User;
 use AppBundle\ImageUpload;
 
 class ImageUploadListener
@@ -40,18 +41,30 @@ class ImageUploadListener
     private function uploadFile($entity)
     {
         // upload only works for Product entities
-        if (!$entity instanceof Plat) {
+        if (!$entity instanceof Plat || !$entity instanceof User) {
             return;
         }
 
-        $file = $entity->getImagePlat();
+        if ($entity instanceof Plat) {
+            $file = $entity->getImagePlat();
 
-        // only upload new files
-        if (!$file instanceof UploadedFile) {
-            return;
+            // only upload new files
+            if (!$file instanceof UploadedFile) {
+                return;
+            }
+
+            $fileName = $this->uploader->upload($file);
+            $entity->setImagePlat($fileName);
+        } else if ($entity instanceof User) {
+            $file = $entity->getImageUser();
+
+            // only upload new files
+            if (!$file instanceof UploadedFile) {
+                return;
+            }
+
+            $fileName = $this->uploader->upload($file);
+            $entity->setImageUser($fileName);
         }
-
-        $fileName = $this->uploader->upload($file);
-        $entity->setImagePlat($fileName);
     }
 }

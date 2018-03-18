@@ -162,6 +162,7 @@
   ':plat:new.html.twig' => __DIR__.'/../../../app/Resources/views/plat/new.html.twig',
   ':plat:index.html.twig' => __DIR__.'/../../../app/Resources/views/plat/index.html.twig',
   ':plat:show.html.twig' => __DIR__.'/../../../app/Resources/views/plat/show.html.twig',
+  ':plat:commande.html.twig' => __DIR__.'/../../../app/Resources/views/plat/commande.html.twig',
   ':default:index.html.twig' => __DIR__.'/../../../app/Resources/views/default/index.html.twig',
   ':user:show.html.twig' => __DIR__.'/../../../app/Resources/views/user/show.html.twig',
   '::accueil.html.twig' => __DIR__.'/../../../app/Resources/views/accueil.html.twig',
