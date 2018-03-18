@@ -103,30 +103,16 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
-        elseif (0 === strpos($pathinfo, '/annuaire')) {
-            // annuaire_recherche
-            if ('/annuaire' === $pathinfo) {
-                if (!in_array($canonicalMethod, array('GET', 'POST'))) {
-                    $allow = array_merge($allow, array('GET', 'POST'));
-                    goto not_annuaire_recherche;
-                }
-
-                return array (  '_controller' => 'AppBundle\\Controller\\AnnuaireController::rechercheAction',  '_route' => 'annuaire_recherche',);
+        // plat_fiche
+        if ('/annuaire/fiche' === $pathinfo) {
+            if ('GET' !== $canonicalMethod) {
+                $allow[] = 'GET';
+                goto not_plat_fiche;
             }
-            not_annuaire_recherche:
 
-            // annuaire_fiche
-            if ('/annuaire/fiche' === $pathinfo) {
-                if ('GET' !== $canonicalMethod) {
-                    $allow[] = 'GET';
-                    goto not_annuaire_fiche;
-                }
-
-                return array (  '_controller' => 'AppBundle\\Controller\\AnnuaireController::ficheAction',  '_route' => 'annuaire_fiche',);
-            }
-            not_annuaire_fiche:
-
+            return array (  '_controller' => 'AppBundle\\Controller\\AnnuaireController::ficheAction',  '_route' => 'plat_fiche',);
         }
+        not_plat_fiche:
 
         // accueil
         if ('' === $trimmedPathinfo) {

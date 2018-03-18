@@ -157,7 +157,7 @@
   '::menu.html.twig' => __DIR__.'/../../../app/Resources/views/menu.html.twig',
   '::base.html.twig' => __DIR__.'/../../../app/Resources/views/base.html.twig',
   ':annuaire:recherche.html.twig' => __DIR__.'/../../../app/Resources/views/annuaire/recherche.html.twig',
-  ':annuaire:fiche.html.twig' => __DIR__.'/../../../app/Resources/views/annuaire/fiche.html.twig',
+  ':annuaire:fiche.html.twig' => __DIR__ . '/../../../app/Resources/views/annuaire/fiche.html.twig',
   ':plat:edit.html.twig' => __DIR__.'/../../../app/Resources/views/plat/edit.html.twig',
   ':plat:new.html.twig' => __DIR__.'/../../../app/Resources/views/plat/new.html.twig',
   ':plat:index.html.twig' => __DIR__.'/../../../app/Resources/views/plat/index.html.twig',

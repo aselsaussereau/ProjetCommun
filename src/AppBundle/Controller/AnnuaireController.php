@@ -14,46 +14,30 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Plat;
 
 class AnnuaireController extends Controller
 {
     /**
-     * @Route("/annuaire", name="annuaire_recherche")
-     * @Method({"GET", "POST"})
-     */
-    public function rechercheAction()
-    {
-        // retourne page annuaire
-        return $this->render('annuaire/recherche.html.twig');
-
-    }
-
-    /**
-     * @Route("/annuaire/fiche", name="annuaire_fiche")
+     * @Route("/annuaire/fiche", name="plat_fiche")
      * @Method({"GET"})
      */
     public function ficheAction(Request $request)
     {
         // Récupère paramètre de mon url
-        $nom = $request->query->get('nom');
+        $nomPlat = $request->query->get('nom');
 
         $em = $this->getDoctrine()->getManager();
 
-        // Cherche utilisateur grâce au nom
-        $user = $em->getRepository('AppBundle:User')->findOneBy(array('nom' => $nom)); // Renvoie un objet
-        $userId = $user->getId();
+        // Cherche plat grâce au nom
+        $plat = $em->getRepository('AppBundle:Plat')->findOneBy(array('nomPlat' => $nomPlat)); // Renvoie un objet
 
-        // Cherche etudiant grace à l'id user
-        $etudiant = $em->getRepository('AppBundle:Etudiant')->find($userId);
-
-        if ($user != null && $etudiant != null) {
-            // retourne page fiche de l'annuaire
-            return $this->render('annuaire/fiche.html.twig', array(
-                'user' => $user,
-                'etudiant' => $etudiant,
+        if ($plat != null) {
+            return $this->render('plat/fiche.html.twig', array(
+                'plat' => $plat,
             ));
         } else {
-            return $this->render('annuaire/recherche.html.twig');
+            return $this->render('menu.html.twig');
         }
     }
 }
