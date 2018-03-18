@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Plat
@@ -62,6 +63,31 @@ class Plat
      * @ORM\Column(name="creeA", type="datetime")
      */
     private $creeA;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Ajouter une image jpg")
+     * @Assert\File(mimeTypes={ "image/jpeg" })
+     */
+    private $imagePlat;
+
+    /**
+     * @return mixed
+     */
+    public function getImagePlat()
+    {
+        return $this->imagePlat;
+    }
+
+    /**
+     * @param mixed $imagePlat
+     */
+    public function setImagePlat($imagePlat)
+    {
+        $this->imagePlat = $imagePlat;
+    }
+
 
 
     /**

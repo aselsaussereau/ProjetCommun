@@ -33,5 +33,13 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+    app.image_uploader:
+        class: AppBundle\ImageUpload
+        arguments: ['%images_directory%']
 
-
+    app.doctrine_image_listener:
+        class: AppBundle\EventListener\ImageUploadListener
+        arguments: ['@app.image_uploader']
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }

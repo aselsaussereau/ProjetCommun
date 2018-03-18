@@ -109,6 +109,7 @@
     <parameter key="mailer_password">null</parameter>
     <parameter key="secret">ThisTokenIsNotSoSecretChangeIt</parameter>
     <parameter key="locale">fr</parameter>
+    <parameter key="images_directory">/Users/Herry/Phpstorm/ProjetCommun/app/../web/uploads/images</parameter>
     <parameter key="fragment.renderer.hinclude.global_template">null</parameter>
     <parameter key="fragment.path">/_fragment</parameter>
     <parameter key="kernel.secret">ThisTokenIsNotSoSecretChangeIt</parameter>
@@ -518,11 +519,23 @@
     <service id="AppBundle\Controller\UserController" class="AppBundle\Controller\UserController" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
+    <service id="AppBundle\EventListener\ImageUploadListener" class="AppBundle\EventListener\ImageUploadListener" public="false" autowire="true" autoconfigure="true">
+      <argument type="service" id="AppBundle\ImageUpload"/>
+    </service>
     <service id="AppBundle\Form\PlatType" class="AppBundle\Form\PlatType" public="false" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="AppBundle\Form\RegistrationType" class="AppBundle\Form\RegistrationType" public="false" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
+    </service>
+    <service id="AppBundle\ImageUpload" class="AppBundle\ImageUpload" public="false" autowire="true" autoconfigure="true"/>
+    <service id="app.image_uploader" class="AppBundle\ImageUpload" public="false" autowire="true" autoconfigure="true">
+      <argument>/Users/Herry/Phpstorm/ProjetCommun/app/../web/uploads/images</argument>
+    </service>
+    <service id="app.doctrine_image_listener" class="AppBundle\EventListener\ImageUploadListener" public="false" autowire="true" autoconfigure="true">
+      <tag name="doctrine.event_listener" event="prePersist"/>
+      <tag name="doctrine.event_listener" event="preUpdate"/>
+      <argument type="service" id="app.image_uploader"/>
     </service>
     <service id="controller_name_converter" class="Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser" public="false">
       <tag name="monolog.logger" channel="request"/>
@@ -686,7 +699,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>rsECCvS+Ee9Fa1peL2ruas</argument>
+      <argument>XHzHDQLWTuJnBLASuOBsML</argument>
       <argument>/Users/Herry/Phpstorm/ProjetCommun/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -696,7 +709,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>rsECCvS+Ee9Fa1peL2ruas</argument>
+      <argument>XHzHDQLWTuJnBLASuOBsML</argument>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
@@ -2060,14 +2073,6 @@
         <argument>2048</argument>
       </call>
       <call method="addListener">
-        <argument>console.command</argument>
-        <argument type="collection">
-          <argument type="service" id="debug.debug_handlers_listener"/>
-          <argument>configure</argument>
-        </argument>
-        <argument>2048</argument>
-      </call>
-      <call method="addListener">
         <argument>kernel.request</argument>
         <argument type="collection">
           <argument type="service" id="router_listener"/>
@@ -3120,12 +3125,12 @@
     </service>
     <service id="security.authentication.listener.anonymous.main" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
-      <argument>5aae57e5ae1135.17675308</argument>
+      <argument>5aae72cf1ce373.12079937</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.authentication.provider.anonymous.main" class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-      <argument>5aae57e5ae1135.17675308</argument>
+      <argument>5aae72cf1ce373.12079937</argument>
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
       <argument type="service" id="security.token_storage"/>
@@ -3782,6 +3787,13 @@
           <argument>loadClassMetadata</argument>
         </argument>
         <argument type="service" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
+      </call>
+      <call method="addEventListener">
+        <argument type="collection">
+          <argument>prePersist</argument>
+          <argument>preUpdate</argument>
+        </argument>
+        <argument type="service" id="app.doctrine_image_listener"/>
       </call>
     </service>
     <service id="doctrine.dbal.default_connection" class="Doctrine\DBAL\Connection">
@@ -4750,7 +4762,7 @@
     <service id="cache.system.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>B0t68psAbS</argument>
       <argument>0</argument>
-      <argument>rsECCvS+Ee9Fa1peL2ruas</argument>
+      <argument>XHzHDQLWTuJnBLASuOBsML</argument>
       <argument>/Users/Herry/Phpstorm/ProjetCommun/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -4758,7 +4770,7 @@
     <service id="cache.validator.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>o2g8BUknPU</argument>
       <argument>0</argument>
-      <argument>rsECCvS+Ee9Fa1peL2ruas</argument>
+      <argument>XHzHDQLWTuJnBLASuOBsML</argument>
       <argument>/Users/Herry/Phpstorm/ProjetCommun/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -4766,7 +4778,7 @@
     <service id="cache.serializer.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>T9zj6OqUSm</argument>
       <argument>0</argument>
-      <argument>rsECCvS+Ee9Fa1peL2ruas</argument>
+      <argument>XHzHDQLWTuJnBLASuOBsML</argument>
       <argument>/Users/Herry/Phpstorm/ProjetCommun/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -4774,7 +4786,7 @@
     <service id="cache.annotations.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>gK9daMNJRc</argument>
       <argument>0</argument>
-      <argument>rsECCvS+Ee9Fa1peL2ruas</argument>
+      <argument>XHzHDQLWTuJnBLASuOBsML</argument>
       <argument>/Users/Herry/Phpstorm/ProjetCommun/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>

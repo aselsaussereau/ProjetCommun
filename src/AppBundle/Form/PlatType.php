@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 
 class PlatType extends AbstractType
@@ -35,9 +36,13 @@ class PlatType extends AbstractType
                 'format' => 'dd-MM-yyyy hh:mm:ss',
             ))
             ->add('creeA', DateTimeType::class, array(
-                'label' => 'Plat crée',
+                'label' => 'Plat crée le',
                 'widget' => 'single_text',
                 'format' => 'dd-MM-yyyy hh:mm:ss',
+            ))
+            ->add('imagePlat', FileType::class, array(
+                'label' => 'Image(JPG)',
+                'data_class' => null,
             ));
     }
 
