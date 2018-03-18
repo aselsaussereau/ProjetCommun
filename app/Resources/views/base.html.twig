@@ -36,6 +36,9 @@
             <div class="nav-wrapper blue-grey lighten-1">
                 <a href="{{ path('accueil') }}" class="brand-logo white-text">Logo</a>
                 <ul class="right hide-on-med-and-down">
+                    <li><a href="{{ path('menu') }}" class="white-text">
+                            <i class="tiny material-icons left">shopping_basket</i>Menu</a>
+                    </li>
                     <li>
                         <a class="dropdown-button white-text" data-activates="dropdown1">
                             <i class="tiny material-icons left">menu</i>Manger Mieux
@@ -65,7 +68,7 @@
                     <li><a href="{{ path('fos_user_security_login') }}" class="white-text">
                             <i class="tiny material-icons left">lock</i>Connexion</a>
                     </li>
-                    <li><a class="white-text">
+                    <li><a href="{{ path('fos_user_security_login') }}" class="white-text">
                             <i class="tiny material-icons left">menu</i>Publiez un repas</a>
                     </li>
                 </ul>
