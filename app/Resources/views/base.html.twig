@@ -19,8 +19,13 @@
 <body>
 
 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-
     <ul id="dropdown1" class="dropdown-content">
+        <li><a href="{{ path('plat_index') }}">Mes plats</a></li>
+        <li><a href="{{ path('plat_new') }}">Poster un plat</a></li>
+        <li class="divider"></li>
+        <li><a href="{{ path('menu') }}">Menu</a></li>
+    </ul>
+    <ul id="dropdown2" class="dropdown-content">
         <li><a href="#">Mes Commandes</a></li>
         <li><a href="{{ path('user_show', { 'id': app.user.id }) }}">Mon Profil</a></li>
         <li class="divider"></li>
@@ -29,15 +34,16 @@
     <div class="navbar-fixed">
         <nav style="opacity: 0.9">
             <div class="nav-wrapper blue-grey lighten-1">
-                <a href="#" class="brand-logo white-text">Logo</a>
+                <a href="{{ path('accueil') }}" class="brand-logo white-text">Logo</a>
                 <ul class="right hide-on-med-and-down">
                     <li>
-                        <a class="button white-text" href="{{ path('menu') }}">
-                            <i class="tiny material-icons left">menu</i>Publiez un repas
+                        <a class="dropdown-button white-text" data-activates="dropdown1">
+                            <i class="tiny material-icons left">menu</i>Manger Mieux
+                            <i class="material-icons right">arrow_drop_down</i>
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-button white-text" data-activates="dropdown1">
+                        <a class="dropdown-button white-text" data-activates="dropdown2">
                             <i class="tiny material-icons left">account_circle</i>{{ app.user.username }}
                             <i class="material-icons right">arrow_drop_down</i>
                         </a>
