@@ -44,7 +44,7 @@ class User extends FOSUser
     protected $genre;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="text")
      *
      * @Assert\NotBlank(message="Ajouter une image jpg")
      * @Assert\File(mimeTypes={ "image/jpeg" })
