@@ -114,6 +114,68 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
         not_plat_fiche:
 
+        if (0 === strpos($pathinfo, '/commentaire')) {
+            // commentaire_index
+            if ('/commentaire' === $trimmedPathinfo) {
+                if ('GET' !== $canonicalMethod) {
+                    $allow[] = 'GET';
+                    goto not_commentaire_index;
+                }
+
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($rawPathinfo.'/', 'commentaire_index');
+                }
+
+                return array (  '_controller' => 'AppBundle\\Controller\\CommentaireController::indexAction',  '_route' => 'commentaire_index',);
+            }
+            not_commentaire_index:
+
+            // commentaire_new
+            if ('/commentaire/new' === $pathinfo) {
+                if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                    $allow = array_merge($allow, array('GET', 'POST'));
+                    goto not_commentaire_new;
+                }
+
+                return array (  '_controller' => 'AppBundle\\Controller\\CommentaireController::newAction',  '_route' => 'commentaire_new',);
+            }
+            not_commentaire_new:
+
+            // commentaire_show
+            if (preg_match('#^/commentaire/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if ('GET' !== $canonicalMethod) {
+                    $allow[] = 'GET';
+                    goto not_commentaire_show;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'commentaire_show')), array (  '_controller' => 'AppBundle\\Controller\\CommentaireController::showAction',));
+            }
+            not_commentaire_show:
+
+            // commentaire_edit
+            if (preg_match('#^/commentaire/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                    $allow = array_merge($allow, array('GET', 'POST'));
+                    goto not_commentaire_edit;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'commentaire_edit')), array (  '_controller' => 'AppBundle\\Controller\\CommentaireController::editAction',));
+            }
+            not_commentaire_edit:
+
+            // commentaire_delete
+            if (preg_match('#^/commentaire/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if ('DELETE' !== $canonicalMethod) {
+                    $allow[] = 'DELETE';
+                    goto not_commentaire_delete;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'commentaire_delete')), array (  '_controller' => 'AppBundle\\Controller\\CommentaireController::deleteAction',));
+            }
+            not_commentaire_delete:
+
+        }
+
         // accueil
         if ('' === $trimmedPathinfo) {
             if (substr($pathinfo, -1) !== '/') {

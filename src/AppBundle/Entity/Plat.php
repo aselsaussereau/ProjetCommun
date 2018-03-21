@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Plat
@@ -73,11 +75,34 @@ class Plat
     private $imagePlat;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Commentaire",mappedBy="plat")
+     */
+    private $commentaires;
+    public function __construct(){
+        $this->commentaires=new ArrayCollection();
+    }
+
+    /**
      * @return mixed
      */
     public function getImagePlat()
     {
         return $this->imagePlat;
+    }
+
+    /**
+     * @return ArrayCollection|Plat[]
+     */
+    public function getCommentaires()
+    {
+        return $this->commentaires;
+    }
+
+    /**
+     */
+    public function setCommentaires($commentaires)
+    {
+        $this->commentaires[] = $commentaires;
     }
 
     /**

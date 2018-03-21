@@ -164,5 +164,9 @@
   ':plat:fiche.html.twig' => __DIR__.'/../../../app/Resources/views/plat/fiche.html.twig',
   ':default:index.html.twig' => __DIR__.'/../../../app/Resources/views/default/index.html.twig',
   ':user:show.html.twig' => __DIR__.'/../../../app/Resources/views/user/show.html.twig',
+  ':commentaire:edit.html.twig' => __DIR__.'/../../../app/Resources/views/commentaire/edit.html.twig',
+  ':commentaire:new.html.twig' => __DIR__.'/../../../app/Resources/views/commentaire/new.html.twig',
+  ':commentaire:index.html.twig' => __DIR__.'/../../../app/Resources/views/commentaire/index.html.twig',
+  ':commentaire:show.html.twig' => __DIR__.'/../../../app/Resources/views/commentaire/show.html.twig',
   '::accueil.html.twig' => __DIR__.'/../../../app/Resources/views/accueil.html.twig',
 );
