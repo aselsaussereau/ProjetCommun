@@ -41,30 +41,30 @@ class ImageUploadListener
     private function uploadFile($entity)
     {
         // upload only works for Product entities
-        if (!$entity instanceof Plat || !$entity instanceof User) {
-            return;
+        if ($entity instanceof Plat || $entity instanceof User) {
+            if ($entity instanceof Plat) {
+                $file = $entity->getImagePlat();
+
+                // only upload new files
+                if (!$file instanceof UploadedFile) {
+                    return;
+                }
+
+                $fileName = $this->uploader->upload($file);
+                $entity->setImagePlat($fileName);
+            } else if ($entity instanceof User) {
+                $file = $entity->getImageUser();
+
+                // only upload new files
+                if (!$file instanceof UploadedFile) {
+                    return;
+                }
+
+                $fileName = $this->uploader->upload($file);
+                $entity->setImageUser($fileName);
+            }
         }
 
-        if ($entity instanceof Plat) {
-            $file = $entity->getImagePlat();
-
-            // only upload new files
-            if (!$file instanceof UploadedFile) {
-                return;
-            }
-
-            $fileName = $this->uploader->upload($file);
-            $entity->setImagePlat($fileName);
-        } else if ($entity instanceof User) {
-            $file = $entity->getImageUser();
-
-            // only upload new files
-            if (!$file instanceof UploadedFile) {
-                return;
-            }
-
-            $fileName = $this->uploader->upload($file);
-            $entity->setImageUser($fileName);
-        }
+        return;
     }
 }

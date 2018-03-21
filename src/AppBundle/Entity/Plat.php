@@ -78,8 +78,10 @@ class Plat
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Commentaire",mappedBy="plat")
      */
     private $commentaires;
+
     public function __construct(){
         $this->commentaires=new ArrayCollection();
+        $this->setCreeA(new \DateTime());
     }
 
     /**

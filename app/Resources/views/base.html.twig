@@ -37,7 +37,8 @@
                 <div class="row">
                     <div class="col s2">
                         <a id="logo" href="{{ path('menu') }}" class="valign-wrapper">
-                            <img style="width: 75px; height: 75px; margin-top: -5px; margin-left: 0px;" src="{{ asset('Logo.png') }}" alt="" class="responsive-img container">
+                            <img style="width: 75px; height: 75px; margin-top: -5px; margin-left: 0px;"
+                                 src="{{ asset('logoMangerMieux.png') }}" alt="" class="responsive-img container">
                         </a>
                     </div>
                 </div>
@@ -68,18 +69,27 @@
     <div class="navbar-fixed">
         <nav style="opacity: 0.9;">
             <div class="nav-wrapper blue-grey lighten-1">
-                <a href="{{ path('accueil') }}" class="brand-logo white-text light">Manger Mieux</a>
-                <ul class="right hide-on-med-and-down ">
-                    <li><a href="{{ path('fos_user_registration_register') }}" class="white-text">
-                            <i class="tiny material-icons left">account_circle</i>Inscription</a>
-                    </li>
-                    <li><a href="{{ path('fos_user_security_login') }}" class="white-text">
-                            <i class="tiny material-icons left">lock</i>Connexion</a>
-                    </li>
-                    <li><a href="{{ path('fos_user_security_login') }}" class="white-text">
-                            <i class="tiny material-icons left">menu</i>Publiez un repas</a>
-                    </li>
-                </ul>
+                <div class="row">
+                    <div class="col s2">
+                        <a id="logo" href="{{ path('menu') }}" class="valign-wrapper">
+                            <img style="width: 75px; height: 75px; margin-top: -5px; margin-left: 0px;"
+                                 src="{{ asset('logoMangerMieux.png') }}" alt="" class="responsive-img container">
+                        </a>
+                    </div>
+                </div>
+                <div style="margin-top: -100px;">
+                    <ul class="right hide-on-med-and-down ">
+                        <li><a href="{{ path('fos_user_registration_register') }}" class="white-text">
+                                <i class="tiny material-icons left">account_circle</i>Inscription</a>
+                        </li>
+                        <li><a href="{{ path('fos_user_security_login') }}" class="white-text">
+                                <i class="tiny material-icons left">lock</i>Connexion</a>
+                        </li>
+                        <li><a href="{{ path('fos_user_security_login') }}" class="white-text">
+                                <i class="tiny material-icons left">menu</i>Publiez un repas</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </div>
