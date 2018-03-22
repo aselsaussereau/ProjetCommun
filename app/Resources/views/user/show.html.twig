@@ -4,8 +4,11 @@
     <div id="utilisateur" class="center container">
         <br><br>
         <h4 class="light">Données utilisateur</h4>
-        <br><br>
-        <img src="{{ asset('uploads/images/' ~ app.user.imageUser) }}" height="300px" width="500px">
+        <br>
+        <div class='card-image'>
+            <img class="circle" alt="Image de profil" src="{{ asset('uploads/images/' ~ app.user.imageUser) }}" height="200px" width="200px">
+        </div>
+        <br>
         <table class="striped">
             <tbody>
             <tr>
