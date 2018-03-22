@@ -5,6 +5,8 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as FOSUser;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
+use AppBundle\Entity\Plat;
 
 
 /**
@@ -50,6 +52,18 @@ class User extends FOSUser
      * @Assert\File(mimeTypes={ "image/jpeg" })
      */
     private $imageUser;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Plat", mappedBy="users")
+     *
+     */
+    protected $plats;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->plats = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -117,9 +131,30 @@ class User extends FOSUser
         return $this;
     }
 
-    public function __construct()
+
+    public function addPlat(Plat $plat)
     {
-        parent::__construct();
-        // your own logic
+        if ($this->plats->contains($plat)) {
+            return;
+        }
+        $this->plats[] = $plat;
+
+    }
+
+    /**
+     * @return ArrayCollection|Plat[]
+     */
+    public function getPlats()
+    {
+        return $this->plats;
+    }
+
+    public function removePlat(Plat $plat)
+    {
+        if ($this->plats->contains($plat)) {
+            return $this->plats->removeElement($plat);
+        } else {
+            return;
+        }
     }
 }

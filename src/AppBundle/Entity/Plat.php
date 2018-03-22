@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use AppBundle\Entity\User;
+
 
 /**
  * Plat
@@ -79,8 +81,17 @@ class Plat
      */
     private $commentaires;
 
-    public function __construct(){
-        $this->commentaires=new ArrayCollection();
+    /**
+     * @ORM\ManyToMany(targetEntity="User")
+     */
+    private $users;
+
+    
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+
+        $this->commentaires = new ArrayCollection();
         $this->setCreeA(new \DateTime());
     }
 
@@ -114,7 +125,6 @@ class Plat
     {
         $this->imagePlat = $imagePlat;
     }
-
 
 
     /**
@@ -269,6 +279,32 @@ class Plat
     public function getCreeA()
     {
         return $this->creeA;
+    }
+
+    public function addUser(User $user)
+    {
+        if ($this->users->contains($user)) {
+            return;
+        }
+        $this->users[] = $user;
+
+    }
+
+    /**
+     * @return ArrayCollection|Plat[]
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    public function removeUser(User $user)
+    {
+        if ($this->users->contains($user)) {
+            return $this->users->removeElement($user);
+        } else {
+            return;
+        }
     }
 }
 

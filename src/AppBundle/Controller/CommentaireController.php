@@ -57,7 +57,10 @@ class CommentaireController extends Controller
             $em->persist($commentaire);
             $em->flush($plat, $commentaire);
 
-            return $this->redirectToRoute('commentaire_show', array('id' => $commentaire->getId()));
+            return $this->redirectToRoute('plat_fiche', array(
+                'id' => $commentaire->getId(),
+                'nom' => $plat->getNomPlat(),
+            ));
         }
 
         return $this->render('commentaire/new.html.twig', array(

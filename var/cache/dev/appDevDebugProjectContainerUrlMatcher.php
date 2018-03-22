@@ -250,6 +250,28 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             }
             not_plat_delete:
 
+            // plat_reserve
+            if (preg_match('#^/plat/(?P<id>[^/]++)/reserve$#s', $pathinfo, $matches)) {
+                if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                    $allow = array_merge($allow, array('GET', 'POST'));
+                    goto not_plat_reserve;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'plat_reserve')), array (  '_controller' => 'AppBundle\\Controller\\PlatController::reserveAction',));
+            }
+            not_plat_reserve:
+
+            // plats_annuler
+            if (preg_match('#^/plat/(?P<id>[^/]++)/annuler$#s', $pathinfo, $matches)) {
+                if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                    $allow = array_merge($allow, array('GET', 'POST'));
+                    goto not_plats_annuler;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'plats_annuler')), array (  '_controller' => 'AppBundle\\Controller\\PlatController::annulerAction',));
+            }
+            not_plats_annuler:
+
         }
 
         elseif (0 === strpos($pathinfo, '/profile')) {

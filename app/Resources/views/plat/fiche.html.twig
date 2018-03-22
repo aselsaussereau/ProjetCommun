@@ -36,6 +36,12 @@
             </tbody>
         </table>
         <br><br>
+        <div class=" waves-effect waves-light btn light">
+            <a class="white-text" href="{{ path('plat_reserve', { 'id': plat.id }) }}">Commander</a>
+        </div>
+        <br><br><br>
+        <div class="divider"></div>
+        <br>
         <h4 class="light">Commentaire</h4>
         <br>
         {% for commentaire in plat.commentaires %}

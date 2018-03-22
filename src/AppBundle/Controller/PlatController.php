@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\Query\AST\Functions\CurrentTimestampFunction;
 
 /**
  * Plat controller.
@@ -132,6 +133,52 @@ class PlatController extends Controller
             ->setAction($this->generateUrl('plat_delete', array('id' => $plat->getId())))
             ->setMethod('DELETE')
             ->getForm();
+    }
+
+    /**
+     * Commander un plat avec ManyToMany.
+     *
+     * @Route("/{id}/reserve", name="plat_reserve")
+     * @Method({"GET", "POST"})
+     */
+    public function reserveAction(Plat $plat)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        // Récupère user connecté
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+
+        $plat->addUser($user);
+        $user->addPlat($plat);
+        $em->flush($plat, $user);
+
+        return $this->render('plat/commande.html.twig', array(
+            'plat' => $plat,
+            'user' => $user,
+        ));
+    }
+
+    /**
+     * Annuler dommande d'un plat avec ManyToMany.
+     *
+     * @Route("/{id}/annuler", name="plats_annuler")
+     * @Method({"GET", "POST"})
+     */
+    public function annulerAction(Plat $plat)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $idUser = $this->container->get('security.token_storage')->getToken()->getUser()->getId();
+
+        $utilisateur = $em->getRepository('AppBundle\Entity\User')->findOneBy(['id' => $idUser]);
+        $plat->removeUser($utilisateur);
+        $utilisateur->removePlat($plat);
+        $em->flush($plat, $utilisateur);
+
+        return $this->render('plat/commande.html.twig', array(
+            'plat' => $plat,
+            'user' => $utilisateur,
+        ));
     }
 
 }
