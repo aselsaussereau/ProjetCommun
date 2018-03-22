@@ -18,9 +18,7 @@ class PlatType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('idPlat', IntegerType::class, array(
-            'label' => 'Identifiant Plat',
-        ))
+        $builder
             ->add('nomPlat', TextType::class, array(
                 'label' => 'Nom plat',
             ))
@@ -30,10 +28,8 @@ class PlatType extends AbstractType
             ->add('descriptionPlat', TextType::class, array(
                 'label' => 'Description plat',
             ))
-            ->add('dureeValide', DateTimeType::class, array(
-                'label' => 'Duree de validité du plat',
-                'widget' => 'single_text',
-                'format' => 'dd-MM-yyyy hh:mm:ss',
+            ->add('dureeValide', IntegerType::class, array(
+                'label' => 'Duree de validité du plat (en nombre d\'heures)',
             ))
             ->add('creeA', DateTimeType::class, array(
                 'label' => 'Plat crée le',

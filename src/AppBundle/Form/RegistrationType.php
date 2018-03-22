@@ -27,7 +27,6 @@ class RegistrationType extends AbstractType
                 'label' => 'Date de naissance (jj/mm/aaaa)',
                 'placeholder' => 'Sélectionner une valeur',
                 'widget' => 'single_text',
-                'format' => 'dd-MM-yyyy',
             ))
             ->add('genre', ChoiceType::class, array(
                 'choices' => array(

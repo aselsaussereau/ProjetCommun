@@ -26,12 +26,6 @@ class Plat
      */
     private $id;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="idPlat", type="integer", unique=true)
-     */
-    private $idPlat;
 
     /**
      * @var string
@@ -55,9 +49,9 @@ class Plat
     private $descriptionPlat;
 
     /**
-     * @var \DateTime
+     * @var \int
      *
-     * @ORM\Column(name="dureeValide", type="datetime")
+     * @ORM\Column(name="dureeValide", type="integer")
      */
     private $dureeValide;
 

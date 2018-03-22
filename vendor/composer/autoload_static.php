@@ -64,11 +64,6 @@ class ComposerStaticInitaf1feea10d23427a7c8e109d54e01896
         array (
             'Fig\\Link\\' => 9,
             'FOS\\UserBundle\\' => 15,
-            'FOS\\ElasticaBundle\\' => 19,
-        ),
-        'E' => 
-        array (
-            'Elastica\\' => 9,
         ),
         'D' => 
         array (
@@ -200,14 +195,6 @@ class ComposerStaticInitaf1feea10d23427a7c8e109d54e01896
         'FOS\\UserBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/friendsofsymfony/user-bundle',
-        ),
-        'FOS\\ElasticaBundle\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/friendsofsymfony/elastica-bundle',
-        ),
-        'Elastica\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/ruflin/elastica/lib/Elastica',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
