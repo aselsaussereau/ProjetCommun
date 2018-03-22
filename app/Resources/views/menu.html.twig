@@ -24,12 +24,12 @@
                     <span class='card-title'>{{ plat.nomPlat }}</span>
                 </div>
                 <div class='card-stacked'>
-                    <div class='card-content'>
+                    <div class='card-content center'>
                         <img src="{{ asset('uploads/images/' ~ app.user.imageUser) }}" alt="imageProfil" class="circle"
                              style="border:1px rgb(225, 225, 225) solid;  max-width:65px;">
-                        <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
-                        <br>
+                        <br><br>
                         <p class='corps'>{{ plat.descriptionPlat }}</p>
+                        <br>
                         <p class='corps'><i class="tiny material-icons">timer</i>
                             {% if plat.dureeValide %}{{ plat.dureeValide|date('H:i:s') }}{% endif %}
                         </p>
