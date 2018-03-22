@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\IntegerType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -11,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerTypeType;
 
 
 class RegistrationType extends AbstractType
@@ -28,6 +30,10 @@ class RegistrationType extends AbstractType
                 'placeholder' => 'Sélectionner une valeur',
                 'widget' => 'single_text',
                 'format' => 'dd-MM-yyyy',
+            ))
+            ->add('tel', TextType::class, array(
+                'label' => 'Numéros de téléphone (ex : 06.45.34.52.32)',
+                'data_class' => null,
             ))
             ->add('genre', ChoiceType::class, array(
                 'choices' => array(

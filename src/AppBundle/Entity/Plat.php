@@ -26,12 +26,6 @@ class Plat
      */
     private $id;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="idPlat", type="integer", unique=true)
-     */
-    private $idPlat;
 
     /**
      * @var string
@@ -86,13 +80,14 @@ class Plat
      */
     private $users;
 
-    
     public function __construct()
     {
         $this->users = new ArrayCollection();
 
+        $this->dureeValide = (new \DateTime('now'))->modify('+1 days');
+        $this->creeA = (new \DateTime('now'));
+
         $this->commentaires = new ArrayCollection();
-        $this->setCreeA(new \DateTime());
     }
 
     /**

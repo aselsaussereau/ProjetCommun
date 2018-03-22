@@ -11,7 +11,7 @@
             <tbody>
             <tr>
                 <th class="center">Identifiant Plat</th>
-                <td class="center">{{ plat.idPlat }}</td>
+                <td class="center">{{ plat.id }}</td>
             </tr>
             <tr>
                 <th class="center">Nom plat</th>
@@ -27,11 +27,11 @@
             </tr>
             <tr>
                 <th class="center">Duree de validité du plat</th>
-                <td class="center">{% if plat.dureeValide %}{{ plat.dureeValide|date('H:i:s') }}{% endif %}</td>
+                <td class="center">{% if plat.dureeValide %}{{ plat.dureeValide|date('d-M-y h:m') }}{% endif %}</td>
             </tr>
             <tr>
                 <th class="center">Plat crée le</th>
-                <td class="center">{% if plat.creeA %}{{ plat.creeA|date('H:i:s') }}{% endif %}</td>
+                <td class="center">{% if plat.creeA %}{{ plat.creeA|date('d-M-y h:m:s') }}{% endif %}</td>
             </tr>
             </tbody>
         </table>
@@ -66,7 +66,7 @@
         <ul>
             <li>
                 <div class=" waves-effect waves-light btn light">
-                    <a class="white-text" href="{{ path('commentaire_new', {'id': plat.idPlat}) }}">Ajouter</a>
+                    <a class="white-text" href="{{ path('commentaire_new', {'id': plat.id}) }}">Ajouter</a>
                 </div>
             </li>
             <br>

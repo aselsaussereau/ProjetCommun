@@ -7,24 +7,24 @@
     <table class="container">
         <thead>
         <tr>
-            <th>Identifiant Plat</th>
-            <th>Nom plat</th>
-            <th>Categorie plat</th>
-            <th>Description plat</th>
-            <th>Duree de validité du plat</th>
-            <th>Plat crée le</th>
-            <th>Actions</th>
+            <th class="center">Identifiant Plat</th>
+            <th class="center">Nom plat</th>
+            <th class="center">Categorie plat</th>
+            <th class="center">Description plat</th>
+            <th class="center">Duree de validité du plat</th>
+            <th class="center">Plat crée le</th>
+            <th class="center">Actions</th>
         </tr>
         </thead>
         <tbody>
         {% for plat in plats %}
             <tr>
-                <td class="center">{{ plat.idPlat }}</td>
+                <td class="center">{{ plat.id }}</td>
                 <td class="center">{{ plat.nomPlat }}</td>
                 <td class="center">{{ plat.categoriePlat }}</td>
                 <td class="center">{{ plat.descriptionPlat }}</td>
-                <td class="center">{% if plat.dureeValide %}{{ plat.dureeValide|date('H:i:s') }}{% endif %}</td>
-                <td class="center">{% if plat.creeA %}{{ plat.creeA|date('H:i:s') }}{% endif %}</td>
+                <td class="center">{% if plat.dureeValide %}{{ plat.dureeValide|date('d-M-y h:m') }}{% endif %}</td>
+                <td class="center">{% if plat.creeA %}{{ plat.creeA|date('d-M-y h:m') }}{% endif %}</td>
                 <td>
                     <ul>
                         <li>

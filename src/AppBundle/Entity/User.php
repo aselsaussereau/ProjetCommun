@@ -46,6 +46,27 @@ class User extends FOSUser
     protected $genre;
 
     /**
+     * @ORM\Column(type="string", length=14)
+     */
+    protected $tel;
+
+    /**
+     * @return mixed
+     */
+    public function getTel()
+    {
+        return $this->tel;
+    }
+
+    /**
+     * @param mixed $tel
+     */
+    public function setTel($tel)
+    {
+        $this->tel = $tel;
+    }
+
+    /**
      * @ORM\Column(type="text")
      *
      * @Assert\NotBlank(message="Ajouter une image jpg")

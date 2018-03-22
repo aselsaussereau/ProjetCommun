@@ -26,7 +26,9 @@
         <li><a href="{{ path('accueil') }}">Accueil</a></li>
     </ul>
     <ul id="dropdown2" class="dropdown-content">
-        <li><a href="#">Mes Commandes</a></li>
+        {% for plat in app.user.plats %}
+            <li><a href="{{ path('plat_reserve', {'id' : plat.id }) }}">Mes Commandes</a></li>
+        {% endfor %}
         <li><a href="{{ path('user_show', { 'id': app.user.id }) }}">Mon Profil</a></li>
         <li class="divider"></li>
         <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
