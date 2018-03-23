@@ -261,6 +261,17 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             }
             not_plat_reserve:
 
+            // plat_listeCommande
+            if (preg_match('#^/plat/(?P<id>[^/]++)/listeCommande$#s', $pathinfo, $matches)) {
+                if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                    $allow = array_merge($allow, array('GET', 'POST'));
+                    goto not_plat_listeCommande;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'plat_listeCommande')), array (  '_controller' => 'AppBundle\\Controller\\PlatController::listeAction',));
+            }
+            not_plat_listeCommande:
+
             // plats_annuler
             if (preg_match('#^/plat/(?P<id>[^/]++)/annuler$#s', $pathinfo, $matches)) {
                 if (!in_array($canonicalMethod, array('GET', 'POST'))) {

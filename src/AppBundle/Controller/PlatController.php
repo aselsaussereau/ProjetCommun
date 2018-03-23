@@ -155,13 +155,36 @@ class PlatController extends Controller
         // Récupère user connecté
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
 
+        $tel = $plat->getUserPoste()->getTel();
+
         $plat->addUser($user);
         $user->addPlat($plat);
         $em->flush($plat, $user);
 
+        return $this->render('plat/confirmation.html.twig', array(
+            'plat' => $plat,
+            'user' => $user,
+            'tel' => $tel,
+        ));
+    }
+
+    /**
+     * Commander un plat avec ManyToMany.
+     *
+     * @Route("/{id}/listeCommande", name="plat_listeCommande")
+     * @Method({"GET", "POST"})
+     */
+    public function listeAction(Plat $plat)
+    {
+        // Récupère user connecté
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+
+        $tel = $plat->getUserPoste()->getTel();
+
         return $this->render('plat/commande.html.twig', array(
             'plat' => $plat,
             'user' => $user,
+            'tel' => $tel,
         ));
     }
 

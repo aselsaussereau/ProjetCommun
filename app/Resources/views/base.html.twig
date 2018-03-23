@@ -27,7 +27,7 @@
     </ul>
     <ul id="dropdown2" class="dropdown-content">
         {% for plat in app.user.plats %}
-            <li><a href="{{ path('plat_reserve', {'id' : plat.id }) }}">Mes Commandes</a></li>
+            <li><a href="{{ path('plat_listeCommande', {'id' : plat.id }) }}">Mes Commandes</a></li>
         {% endfor %}
         <li><a href="{{ path('user_show', { 'id': app.user.id }) }}">Mon Profil</a></li>
         <li class="divider"></li>

@@ -10,6 +10,7 @@
             <th class="center">Nom plat</th>
             <th class="center">Categorie plat</th>
             <th class="center">Description plat</th>
+            <th class="center">Contact</th>
             <th class="center">Duree de validité du plat</th>
             <th class="center">Actions</th>
         </tr>
@@ -20,6 +21,11 @@
                 <td class="center">{{ plat.nomPlat }}</td>
                 <td class="center">{{ plat.categoriePlat }}</td>
                 <td class="center">{{ plat.descriptionPlat }}</td>
+                {% if plat.userPoste.tel is defined %}
+                    <td class="center">{{ plat.userPoste.tel }}</td>
+                {% else %}
+                    <td class="center">Non renseigné</td>
+                {% endif %}
                 <td class="center">{% if plat.dureeValide %}{{ plat.dureeValide|date('d-M-y h:m') }}{% endif %}</td>
                 <td>
                     <div>
