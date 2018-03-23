@@ -51,20 +51,10 @@ class User extends FOSUser
     protected $tel;
 
     /**
-     * @return mixed
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Plat",mappedBy="userPoste")
      */
-    public function getTel()
-    {
-        return $this->tel;
-    }
+    private $platsPoste;
 
-    /**
-     * @param mixed $tel
-     */
-    public function setTel($tel)
-    {
-        $this->tel = $tel;
-    }
 
     /**
      * @ORM\Column(type="text")
@@ -84,6 +74,40 @@ class User extends FOSUser
     {
         parent::__construct();
         $this->plats = new ArrayCollection();
+
+        $this->platsPoste = new ArrayCollection();
+    }
+
+    /**
+     * @return ArrayCollection|User[]
+     */
+    public function getPlatsPoste()
+    {
+        return $this->platsPoste;
+    }
+
+    /**
+     * @param mixed $platsPoste
+     */
+    public function setPlatsPoste($platsPoste)
+    {
+        $this->platsPoste[] = $platsPoste;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTel()
+    {
+        return $this->tel;
+    }
+
+    /**
+     * @param mixed $tel
+     */
+    public function setTel($tel)
+    {
+        $this->tel = $tel;
     }
 
     /**

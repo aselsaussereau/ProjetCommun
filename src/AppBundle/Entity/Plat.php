@@ -80,6 +80,13 @@ class Plat
      */
     private $users;
 
+    /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User",inversedBy="platsPoste")
+     * @ORM\JoinColumn(name="user_id",referencedColumnName="id")
+     */
+    private $userPoste;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -88,6 +95,25 @@ class Plat
         $this->creeA = (new \DateTime('now'));
 
         $this->commentaires = new ArrayCollection();
+
+        return $this->getUserPoste();
+        // TODO: Implement __toString() method.
+    }
+
+    /**
+     * @return \AppBundle\Entity\User
+     */
+    public function getUserPoste()
+    {
+        return $this->userPoste;
+    }
+
+    /**
+     * @param \AppBundle\Entity\User $userPoste
+     */
+    public function setUserPoste($userPoste)
+    {
+        $this->userPoste = $userPoste;
     }
 
     /**

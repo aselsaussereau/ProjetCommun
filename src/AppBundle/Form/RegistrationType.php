@@ -32,7 +32,7 @@ class RegistrationType extends AbstractType
                 'format' => 'dd-MM-yyyy',
             ))
             ->add('tel', TextType::class, array(
-                'label' => 'Numéros de téléphone (ex : 06.45.34.52.32)',
+                'label' => 'Numéros de téléphone (ex : 0645345232)',
                 'data_class' => null,
             ))
             ->add('genre', ChoiceType::class, array(

@@ -46,9 +46,16 @@ class PlatController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Récupère user connecté
+            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+
+            $user->setPlatsPoste($plat);
+            $plat->setUserPoste($user);
+
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($plat);
-            $em->flush();
+            $em->flush($user, $plat);
 
             return $this->redirectToRoute('plat_show', array('id' => $plat->getId()));
         }
