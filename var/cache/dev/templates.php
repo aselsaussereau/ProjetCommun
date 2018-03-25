@@ -156,6 +156,7 @@
   'WebProfilerBundle:Router:panel.html.twig' => __DIR__.'/../../../vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views/Router/panel.html.twig',
   '::menu.html.twig' => __DIR__.'/../../../app/Resources/views/menu.html.twig',
   '::base.html.twig' => __DIR__.'/../../../app/Resources/views/base.html.twig',
+  ':plat:confirmation.html.twig' => __DIR__.'/../../../app/Resources/views/plat/confirmation.html.twig',
   ':plat:edit.html.twig' => __DIR__.'/../../../app/Resources/views/plat/edit.html.twig',
   ':plat:new.html.twig' => __DIR__.'/../../../app/Resources/views/plat/new.html.twig',
   ':plat:index.html.twig' => __DIR__.'/../../../app/Resources/views/plat/index.html.twig',

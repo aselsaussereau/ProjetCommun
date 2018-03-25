@@ -17,31 +17,61 @@
     </div>
     <br>
     {% for plat in plats %}
-        {% if date() < date(plat.dureeValide) %}
-            <div class="section no-pad-bot container">
-                <div class='card horizontal'>
-                    <div class='card-image'>
-                        <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" height="300px" width="500px">
-                        <span class='card-title'>{{ plat.nomPlat }}</span>
-                    </div>
-                    <div class='card-stacked'>
-                        <div class='card-content center'>
-                            <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" alt="imageProfil" class="circle"
-                                 style="border:1px rgb(225, 225, 225) solid;  max-width:65px;">
-                            <br><br>
-                            <p class='corps'>{{ plat.descriptionPlat }}</p>
-                            <br>
-                            <p class='corps'><i class="tiny material-icons">timer</i>
-                                {% if plat.dureeValide %}{{ plat.dureeValide|date('d-M-y h:m') }}{% endif %}
-                            </p>
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            {% if date() < date(plat.dureeValide) %}
+                <div class="section no-pad-bot container">
+                    <div class='card horizontal'>
+                        <div class='card-image'>
+                            <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" height="300px" width="500px">
+                            <span class='card-title'>{{ plat.nomPlat }}</span>
                         </div>
-                        <div class='card-action center'>
-                            <a href='{{ path('plat_fiche', {'nom': plat.nomPlat}) }}'>Commander</a>
+                        <div class='card-stacked'>
+                            <div class='card-content center'>
+                                <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" alt="imageProfil"
+                                     class="circle"
+                                     style="border:1px rgb(225, 225, 225) solid;  max-width:65px;">
+                                <br><br>
+                                <p class='corps'>{{ plat.descriptionPlat }}</p>
+                                <br>
+                                <p class='corps'><i class="tiny material-icons">timer</i>
+                                    {% if plat.dureeValide %}{{ plat.dureeValide|date('d-M-y h:m') }}{% endif %}
+                                </p>
+                            </div>
+                            <div class='card-action center'>
+                                <a href='{{ path('plat_fiche', {'nom': plat.nomPlat}) }}'>Commander</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <br><br>
+                <br><br>
+            {% else %}
+                <div class="section no-pad-bot container">
+                    <div class='card horizontal'>
+                        <div class='card-image'>
+                            <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" height="300px" width="500px">
+                            <span class='card-title'>{{ plat.nomPlat }}</span>
+                        </div>
+                        <div class='card-stacked'>
+                            <div class='card-content center'>
+                                <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" alt="imageProfil"
+                                     class="circle"
+                                     style="border:1px rgb(225, 225, 225) solid;  max-width:65px;">
+                                <br><br>
+                                <p class='corps'>{{ plat.descriptionPlat }}</p>
+                                <br>
+                                <p class='corps'><i class="tiny material-icons">timer</i>
+                                    {% if plat.dureeValide %}{{ plat.dureeValide|date('d-M-y h:m') }}{% endif %}
+                                </p>
+                                <p>Temps épuisé</p>
+                            </div>
+                            <div class='card-action center'>
+                                <a class="btn-flat disabled" href='{{ path('plat_fiche', {'nom': plat.nomPlat}) }}'>Commander</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+            {% endif %}
         {% else %}
             <div class="section no-pad-bot container">
                 <div class='card horizontal'>
@@ -62,7 +92,7 @@
                             <p>Temps épuisé</p>
                         </div>
                         <div class='card-action center'>
-                            <a class="btn-flat disabled" href='{{ path('plat_fiche', {'nom': plat.nomPlat}) }}'>Commander</a>
+                            <a href='{{ path('fos_user_security_login') }}'>Commander</a>
                         </div>
                     </div>
                 </div>
@@ -92,9 +122,6 @@
                         "Pommes de terre farcies": null,
                         "Cordon Bleu": null,
                         "Boulettes de pommes de terre farcies à la viande": null,
-                        "Hamburger": null,
-                        "Salade de poulet": null,
-                        "Pizza au chorizo": null,
                     },
                     limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
                     onAutocomplete: function (val) {
